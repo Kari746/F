@@ -21,7 +21,7 @@ user_bans = {}  # Tracks user ban status and ban expiry time
 reset_time = datetime.now().astimezone(timezone(timedelta(hours=5, minutes=30))).replace(hour=0, minute=0, second=0, microsecond=0)
 
 # Cooldown duration (in seconds)
-COOLDOWN_DURATION = 60  # 5 minutes
+COOLDOWN_DURATION = 60  # 2 minutes
 BAN_DURATION = timedelta(minutes=1)  
 DAILY_ATTACK_LIMIT = 5000  # Daily attack limit per user
 
@@ -148,7 +148,7 @@ def bgmi_command(message):
             user_cooldowns[user_id] = datetime.now() + timedelta(seconds=COOLDOWN_DURATION)
 
         # Notify that the attack will run for the default duration of 150 seconds, but display the input duration
-        default_duration = 240
+        default_duration = 300
         bot.send_message(
             message.chat.id,
             f"🚀𝙃𝙞 {message.from_user.first_name}, 𝘼𝙩𝙩𝙖𝙘𝙠 𝙨𝙩𝙖𝙧𝙩𝙚𝙙 𝙤𝙣 {target_ip} : {target_port} 𝙛𝙤𝙧 {default_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 [ 𝙊𝙧𝙞𝙜𝙞𝙣𝙖𝙡 𝙞𝙣𝙥𝙪𝙩: {user_duration} 𝙨𝙚𝙘𝙤𝙣𝙙𝙨 ] \n\n❗️❗️ 𝙋𝙡𝙚𝙖𝙨𝙚 𝙎𝙚𝙣𝙙 𝙁𝙚𝙚𝙙𝙗𝙖𝙘𝙠 ❗️❗️"
